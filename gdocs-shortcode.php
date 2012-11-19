@@ -38,6 +38,8 @@ function ray_google_docs_shortcode( $atts ) {
 		                     // preset dimensions are as follows: small (480x389), medium (960x749), large (1440x1109)
 		                     // to set custom size, set the 'width' and 'height' params instead
 
+		'start'    => false, // start slideshow after page loads?
+
 	), $atts ) );
 
 	// if no link or link is not from Google Docs, stop now!
@@ -49,7 +51,7 @@ function ray_google_docs_shortcode( $atts ) {
 	// set the doc type by looking at the URL
 	if ( strpos( $link, '/document/' ) !== false )
 		$type = 'doc';
-	elseif ( strpos( $link, '/presentation/' ) !== false )
+	elseif ( strpos( $link, '/presentation/' ) !== false  || strpos( $link, '/present/' ) !== false )
 		$type = 'presentation';
 	elseif ( strpos( $link, 'form?formkey' ) !== false )
 		$type = 'form';
@@ -68,15 +70,18 @@ function ray_google_docs_shortcode( $atts ) {
 
 		case 'presentation' :
 			// alter the link so we're in embed mode
+			// (older docs)
+			$link = str_replace( '/view', '/embed', $link );
+
+			// alter the link so we're in embed mode
 			$link = str_replace( 'pub?', 'embed?', $link );
 
+			// start the slideshow when page loads?
+			if ( (int) $start === 1 )
+				$link = add_query_arg( 'start', 'true', $link );
+
+			// dimensions
 			switch ( $size ) {
-				case 'small' :
-					$width  = 480;
-					$height = 389;
-
-					break;
-
 				case 'medium' :
 					$width  = 960;
 					$height = 749;
@@ -86,6 +91,13 @@ function ray_google_docs_shortcode( $atts ) {
 				case 'large' :
 					$width  = 1440;
 					$height = 1109;
+
+					break;
+
+				case 'small' :
+				default :
+					$width  = 480;
+					$height = 389;
 
 					break;
 			}

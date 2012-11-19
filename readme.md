@@ -45,8 +45,11 @@ Here are some other custom parameters you can use with the shortcode:
 
 * "size" - This parameter is only applicable to Presentations.  You can enter in "small", "medium" or "large" to use the presentation preset sizes. Dimensions for these presets are: small (480x389), medium (960x749), large (1440x1109). To set a custom width and height, use the "width" and "height" parameters listed above instead.
 
+* "start" - This parameter is only applicable to Presentations.  If you enter "1", this will start the presentation slideshow after the page loads.  Default value is "0", which means the presentation does not autostart.  Note: this parameter does not work for older versions of Presentations.  If you are using an older version, [read this guide](http://support.google.com/drive/bin/answer.py?hl=en&answer=1694982) to convert your presentation over to the new Google Slides format.
+
 ***
 
 ### Thanks
 
 * Scott Voth - for testing and writing a version of this documentation on the CUNY Academic Commons codex.
+* Christopher Stein - for noting a bug about using older presentations with the plugin.
