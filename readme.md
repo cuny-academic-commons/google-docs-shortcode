@@ -27,8 +27,8 @@ This plugin was developed for the [CUNY Academic Commons](http://commons.gc.cuny
 You can customize the shortcode by using [some custom parameters mentioned below](#other-shortcode-parameters).
 
 #### Embedding a form
-1. Follow steps 1-3 above.
-2. Next, navigate to **View > Live form.** (If you're using an older version of Forms, navigate to **Form > Go to live form**.)  This should take you to the public version of the form.  Copy the URL from your browser's address bar.
+1. Follow step 1 above.
+2. Next, navigate to **View > Live form.** (If you don't see this entry, this means you're using an older version of Forms.  You will also need to follow steps 2-3 above.  Next, navigate to **Form > Go to live form**.)  This should take you to the public version of the form.  Copy the URL from your browser's address bar.
 3. Follow step 5 above.
 
 ***
