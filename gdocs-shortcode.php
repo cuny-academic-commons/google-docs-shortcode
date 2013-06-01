@@ -47,16 +47,27 @@ function ray_google_docs_shortcode( $atts ) {
 	$type = $extra = false;
 
 	// set the doc type by looking at the URL
-	if ( strpos( $link, '/document/' ) !== false )
+
+	// document
+	if ( strpos( $link, '/document/' ) !== false ) {
 		$type = 'doc';
-	elseif ( strpos( $link, '/presentation/' ) !== false  || strpos( $link, '/present/' ) !== false )
+
+	// presentation
+	} elseif ( strpos( $link, '/presentation/' ) !== false || strpos( $link, '/present/' ) !== false ) {
 		$type = 'presentation';
-	elseif ( strpos( $link, 'form?formkey' ) !== false )
+
+	// form
+	} elseif ( strpos( $link, '/forms/' ) !== false || strpos( $link, 'form?formkey' ) !== false ) {
 		$type = 'form';
-	elseif ( strpos( $link, '/spreadsheet/' ) !== false )
+
+	// spreadsheet
+	} elseif ( strpos( $link, '/spreadsheet/' ) !== false ) {
 		$type = 'spreadsheet';
-	else
+
+	// nada!
+	} else {
 		return;
+	}
 
 	// add query args depending on doc type
 	switch ( $type ) {
@@ -105,8 +116,14 @@ function ray_google_docs_shortcode( $atts ) {
 			break;
 
 		case 'form' :
-			// alter the link so we're in embed mode
-			$link = str_replace( 'viewform?', 'embeddedform?', $link );
+			// new form format
+			if ( strpos( $link, '/forms/' ) !== false ) {
+				$link = str_replace( 'viewform', 'viewform?embedded=true', $link );
+
+			// older form format
+			} else {
+				$link = str_replace( 'viewform?', 'embeddedform?', $link );
+			}
 
 			// extra iframe args
 			// i'm aware that these are non-standard attributes in XHTML / HTML5,
