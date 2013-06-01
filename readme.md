@@ -15,11 +15,11 @@ This plugin was developed for the [CUNY Academic Commons](http://commons.gc.cuny
 ### How to Use
 
 #### Embedding a document, presentation or spreadsheet
-1. First, you’ll need to find the public URL of your Google Doc. Let's start by [logging in to your Google Docs](https://docs.google.com). Next, find the item you want to embed.
-2. You should now have your Google Doc open.  Next, navigate to "**File > Publish to the Web**". A dialogue box should appear, similar to the one below:  
+1. First, you'll need to find the public URL of your Google Doc. Let's start by [logging in to your Google Docs](https://docs.google.com). Next, find the item you want to embed.
+2. You should now have your Google Doc open.  Next, navigate to **File > Publish to the Web**. A dialogue box should appear, similar to the one below:  
 ![Publish to the Web dialog window](http://codex.commons.gc.cuny.edu/files/2012/08/googledocs.jpg)  
-3. Make sure that the "**Automatically republish when changes are made**" checkbox is checked. This will allow you to make changes to your Google Docs and have these changes automatically reflected on your WordPress site.
-4. Copy the "**Document Link**" highlighted in red above.
+3. Make sure that the **Automatically republish when changes are made** checkbox is checked. This will allow you to make changes to your Google Docs and have these changes automatically reflected on your WordPress site.
+4. Copy the **Document Link** highlighted in red above.  If you don't see the "Document Link" field, click on the **Start publishing** button and you should be able to view the field.
 5. Now navigate to your WordPress dashboard and open up the post or page where you want to embed your document. On a new line, type the following shortcode and paste in the link you copied, above:
 
   <pre>[gdoc link="THE LINK YOU COPIED" height="800"]</pre>
@@ -28,7 +28,7 @@ You can customize the shortcode by using [some custom parameters mentioned below
 
 #### Embedding a form
 1. Follow steps 1-3 above.
-2. Next, navigate to "**Form > Go to live form**".  This should take you to the public version of the form.  Copy the URL from your browser's address bar.
+2. Next, navigate to **View > Live form.** (If you're using an older version of Forms, navigate to **Form > Go to live form**.)  This should take you to the public version of the form.  Copy the URL from your browser's address bar.
 3. Follow step 5 above.
 
 ***
