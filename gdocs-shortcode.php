@@ -5,7 +5,7 @@ Plugin URI: https://github.com/cuny-academic-commons/google-docs-shortcode
 Description: Easily embed a Google Doc into your blog posts
 Author: r-a-y
 Author URI: http://buddypress.org/community/members/r-a-y/
-Version: 0.1
+Version: 0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */

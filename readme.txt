@@ -2,8 +2,8 @@
 Contributors: r-a-y, cuny-academic-commons
 Tags: google-docs, shortcode
 Requires at least: WP 3.0
-Tested up to: WP 3.4.x
-Stable tag: 0.1
+Tested up to: WP 3.5.x
+Stable tag: 0.2
 
 Easily embed a Google Doc into your blog posts
 
@@ -25,6 +25,9 @@ To view a tutorial on how to use the shortcode, [read this](http://github.com/cu
 1. To view a tutorial on how to use the shortcode, [read this](http://github.com/cuny-academic-commons/google-docs-shortcode#google-docs-shortcode).
 
 == Changelog ==
+
+= 0.2 =
+* Add support for newer Forms format.
 
 = 0.1 =
 * Initial version.
