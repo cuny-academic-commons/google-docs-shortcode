@@ -97,11 +97,6 @@ function ray_google_docs_shortcode( $atts ) {
 					$height = 1109;
 					break;
 
-				case 'small' :
-					$width  = 480;
-					$height = 389;
-                    break;
-
                 case 'large-ws':
                     $width = 1440;
                     $height = 839;
@@ -116,6 +111,10 @@ function ray_google_docs_shortcode( $atts ) {
                     $width = 480;
                     $height = 299;
                     break;
+				case 'small' :
+					$width  = 480;
+					$height = 389;
+
 
 				default :
 					break;
