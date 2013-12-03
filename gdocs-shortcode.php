@@ -90,19 +90,33 @@ function ray_google_docs_shortcode( $atts ) {
 				case 'medium' :
 					$width  = 960;
 					$height = 749;
-
 					break;
 
 				case 'large' :
 					$width  = 1440;
 					$height = 1109;
-
 					break;
 
 				case 'small' :
 					$width  = 480;
 					$height = 389;
                     break;
+
+                case 'large-ws':
+                    $width = 1440;
+                    $height = 839;
+                    break;
+
+                case 'medium-ws':
+                    $width = 960;
+                    $height = 569;
+                    break;
+
+                case 'small-ws':
+                    $width = 480;
+                    $height = 299;
+                    break;
+
 				default :
 					break;
 			}

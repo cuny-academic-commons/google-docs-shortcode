@@ -43,7 +43,7 @@ Here are some other custom parameters you can use with the shortcode:
 
 * "seamless" - This parameter is only applicable to Documents. If you enter "0", this will show the Google Docs header and footer.  Default value is "1", which means that no Google Docs header or footer will be shown.
 
-* "size" - This parameter is only applicable to Presentations.  You can enter in "small", "medium" or "large" to use the presentation preset sizes. Dimensions for these presets are: small (480x389), medium (960x749), large (1440x1109). To set a custom width and height, use the "width" and "height" parameters listed above instead.
+* "size" - This parameter is only applicable to Presentations.  You can enter in "small", "medium" or "large" to use the presentation preset sizes. Dimensions for these presets are: small (480x389), medium (960x749), large (1440x1109). For widescreen presentations, you can use "small-ws" (480x299), "medium-ws" (960x569), or "large-ws" (1440x839). To set a custom width and height, use the "width" and "height" parameters listed above instead.
 
 ***
 
