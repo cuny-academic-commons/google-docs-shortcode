@@ -100,10 +100,10 @@ function ray_google_docs_shortcode( $atts ) {
 					break;
 
 				case 'small' :
-				default :
 					$width  = 480;
 					$height = 389;
-
+                    break;
+				default :
 					break;
 			}
 
