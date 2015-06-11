@@ -26,8 +26,12 @@ To view a tutorial on how to use the shortcode, [read this](http://github.com/cu
 
 == Changelog ==
 
+= 0.3 =
+* Add support for latest Sheets format.
+* Add support for Slides widescreen preset sizes.
+
 = 0.2 =
-* Add support for newer Forms format.
+* Add support for latest Forms format.
 
 = 0.1 =
 * Initial version.
