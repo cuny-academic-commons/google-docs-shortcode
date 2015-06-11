@@ -16,10 +16,11 @@ This plugin was developed for the [CUNY Academic Commons](http://commons.gc.cuny
 
 #### Embedding a document, presentation or spreadsheet
 1. First, you'll need to find the public URL of your Google Doc. Let's start by [logging in to your Google Docs](https://docs.google.com). Next, find the item you want to embed.
-2. You should now have your Google Doc open.  Next, navigate to **File > Publish to the Web**. A dialogue box should appear, similar to the one below:  
-![Publish to the Web dialog window](http://codex.commons.gc.cuny.edu/files/2012/08/googledocs.jpg)  
-3. Make sure that the **Automatically republish when changes are made** checkbox is checked. This will allow you to make changes to your Google Docs and have these changes automatically reflected on your WordPress site.
-4. Copy the **Document Link** highlighted in red above.  If you don't see the "Document Link" field, click on the **Start publishing** button and you should be able to view the field.
+2. You should now have your Google Doc open.  Next, navigate to **File > Publish to the Web**. A dialogue box should appear.
+3. Make sure that the **Automatically republish when changes are made** checkbox is checked. This will allow you to make changes to your Google Docs and have these changes automatically reflected on your WordPress site.  Next, click on the **Start publishing** button.
+    ![Publish to web dialog window](https://cloud.githubusercontent.com/assets/505921/8118458/ebd74a58-1043-11e5-8aa4-d622bd1b73fb.png)
+4. You should now be able to see the link to the Google Doc.  Copy the **Link** highlighted in red above.
+    ![Copy Google Doc link](https://cloud.githubusercontent.com/assets/505921/8118457/ebd14892-1043-11e5-8c62-bb3f07b71e3f.png)
 5. Now navigate to your WordPress dashboard and open up the post or page where you want to embed your document. On a new line, type the following shortcode and paste in the link you copied, above:
 
   <pre>[gdoc link="THE LINK YOU COPIED" height="800"]</pre>
