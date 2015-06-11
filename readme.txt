@@ -1,9 +1,9 @@
 === Google Docs Shortcode ===
 Contributors: r-a-y, cuny-academic-commons
 Tags: google-docs, shortcode
-Requires at least: WP 3.0
-Tested up to: WP 3.5.x
-Stable tag: 0.2
+Requires at least: 3.0
+Tested up to: 4.2.x
+Stable tag: 0.3
 
 Easily embed a Google Doc into your blog posts
 
