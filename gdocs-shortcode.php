@@ -41,8 +41,9 @@ function ray_google_docs_shortcode( $atts ) {
 	), $atts ) );
 
 	// if no link or link is not from Google Docs, stop now!
-	if ( ! $link || strpos( $link, '://docs.google.com' ) === false )
+	if ( ! $link || strpos( $link, '://docs.google.com' ) === false ) {
 		return;
+	}
 
 	$type = $extra = false;
 
@@ -72,8 +73,9 @@ function ray_google_docs_shortcode( $atts ) {
 	// add query args depending on doc type
 	switch ( $type ) {
 		case 'doc' :
-			if ( (int) $seamless === 1 )
+			if ( (int) $seamless === 1 ) {
 				$link = add_query_arg( 'embedded', 'true', $link );
+			}
 
 			break;
 
