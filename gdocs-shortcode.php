@@ -61,7 +61,7 @@ function ray_google_docs_shortcode( $atts ) {
 		$type = 'form';
 
 	// spreadsheet
-	} elseif ( strpos( $link, '/spreadsheet/' ) !== false ) {
+	} elseif ( strpos( $link, '/spreadsheets/' ) !== false || strpos( $link, '/spreadsheet/' ) !== false ) {
 		$type = 'spreadsheet';
 
 	// nada!
