@@ -80,6 +80,8 @@ function ray_google_docs_shortcode( $atts ) {
 			break;
 
 		case 'presentation' :
+			$is_old_doc = strpos( $r['link'], '/present/' ) !== false || strpos( $r['link'], '?id=' ) !== false;
+
 			// alter the link so we're in embed mode
 			// (older docs)
 			$r['link'] = str_replace( '/view', '/embed', $r['link'] );
@@ -91,20 +93,35 @@ function ray_google_docs_shortcode( $atts ) {
 			switch ( $r['size'] ) {
 				case 'medium' :
 					$r['width']  = 960;
-					$r['height'] = 749;
+
+					if ( $is_old_doc ) {
+						$r['height'] = 749;
+					} else {
+						$r['height'] = 559;
+					}
 
 					break;
 
 				case 'large' :
 					$r['width']  = 1440;
-					$r['height'] = 1109;
+
+					if ( $is_old_doc ) {
+						$r['height'] = 1109;
+					} else {
+						$r['height'] = 839;
+					}
 
 					break;
 
 				case 'small' :
 				default :
 					$r['width']  = 480;
-					$r['height'] = 389;
+
+					if ( $is_old_doc ) {
+						$r['height'] = 389;
+					} else {
+						$r['height'] = 299;
+					}
 
 					break;
 			}
