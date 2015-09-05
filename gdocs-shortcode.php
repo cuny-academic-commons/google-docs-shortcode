@@ -165,6 +165,12 @@ function ray_google_docs_shortcode( $atts ) {
 
 	}
 
+	// support "anyone with link" functionality
+	if ( false !== strpos( $r['link'], '/edit?usp=sharing' ) ) {
+		$r['link'] = str_replace( '/edit?usp=sharing', '/preview', $r['link'] );
+		$r['link'] = str_replace( '&widget=true', '', $r['link'] );
+	}
+
 	// set width
 	$r['width'] = ' width="' . esc_attr( $r['width'] ) . '"';
 
