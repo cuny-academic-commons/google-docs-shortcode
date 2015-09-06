@@ -13,6 +13,51 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Initializer.
+ */
+function ray_gdoc_shortcode_init() {
+	add_shortcode( 'gdoc', 'ray_google_docs_shortcode' );
+
+	/**
+	 * Support for Shortcake.
+	 */
+	if ( function_exists( 'shortcode_ui_register_for_shortcode' ) ) {
+		shortcode_ui_register_for_shortcode(
+			'gdoc',
+			array(
+
+				'label' => __( 'Google Drive', 'google-docs-shortcode' ),
+
+				'listItemImage' => 'https://developers.google.com/drive/images/drive_icon_mono.png',
+
+				// @todo Figure out how to do conditional attributes to support 'size' and 'seamless'
+				'attrs' => array(
+					array(
+						'label' => __( 'Google Doc Link', 'google-docs-shortcode' ),
+						'attr'  => 'link',
+						'type'  => 'text'
+					),
+
+					array(
+						'label' => __( 'Width', 'google-docs-shortcode' ),
+						'attr'  => 'width',
+						'type'  => 'number'
+					),
+
+					array(
+						'label' => __( 'Height', 'google-docs-shortcode' ),
+						'attr'  => 'height',
+						'type'  => 'number'
+					)
+
+				),
+
+			)
+		);
+	}
+}
+add_action( 'init', 'ray_gdoc_shortcode_init' );
 
 /**
  * Shortcode to embed a Google Doc.
@@ -182,4 +227,3 @@ function ray_google_docs_shortcode( $atts ) {
 
 	return apply_filters( 'ray_google_docs_shortcode_output', $output, $type );
 }
-add_shortcode( 'gdoc', 'ray_google_docs_shortcode' );
