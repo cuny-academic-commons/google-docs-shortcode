@@ -36,21 +36,29 @@ function ray_gdoc_shortcode_init() {
 					array(
 						'label' => __( 'Google Doc Link', 'google-docs-shortcode' ),
 						'attr'  => 'link',
-						'type'  => 'text'
+						'type'  => 'text',
+						'description' => __( 'Paste the published-to-the-web Google Doc link or a publicly-shared Google Doc link here.', 'gdrive' )
 					),
 
 					array(
 						'label' => __( 'Width', 'google-docs-shortcode' ),
 						'attr'  => 'width',
-						'type'  => 'number'
+						'type'  => 'number',
+						'meta' => array(
+							'style' => 'width:75px'
+						),
+						'description' => __( "Enter width in pixels. If left blank, this defaults to the theme's width.", 'gdrive' )
 					),
 
 					array(
 						'label' => __( 'Height', 'google-docs-shortcode' ),
 						'attr'  => 'height',
-						'type'  => 'number'
+						'type'  => 'number',
+						'meta' => array(
+							'style' => 'width:75px'
+						),
+						'description' => __( "Enter height in pixels. If left blank, this defaults to 300.", 'gdrive' )
 					)
-
 				),
 
 			)
