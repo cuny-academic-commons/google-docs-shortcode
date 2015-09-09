@@ -58,7 +58,34 @@ function ray_gdoc_shortcode_init() {
 							'style' => 'width:75px'
 						),
 						'description' => __( "Enter height in pixels. If left blank, this defaults to 300.", 'gdrive' )
-					)
+					),
+
+					// maybe later...
+					/*
+					array(
+						'label' => __( 'Size', 'google-docs-shortcode' ),
+						'attr'  => 'size',
+						'type' => 'select',
+						'options' => array(
+							'small'  => __( 'Small - 480 x 299', 'google-docs-shortcode' ),
+							'medium' => __( 'Medium - 960 x 559', 'google-docs-shortcode' ),
+							'large'  => __( 'Large - 1440 x 839', 'google-docs-shortcode' )
+						),
+						'description' => __( 'This is only applicable to Google Slides. If you want to set a custom width and height, use the options above.', 'google-docs-shortcode' )
+					),
+					*/
+
+					// This doesn't quite work yet; commenting out for now
+					// @link https://github.com/fusioneng/Shortcake/pull/413
+					/*
+					array(
+						'label' => __( 'Show Doc Header/Footer', 'google-docs-shortcode' ),
+						'attr'  => 'seamless',
+						'type' => 'checkbox',
+						'value' => 0,
+						'description' => __( 'This is only applicable to Google Docs.', 'google-docs-shortcode' )
+					),
+					*/
 				),
 
 			)
