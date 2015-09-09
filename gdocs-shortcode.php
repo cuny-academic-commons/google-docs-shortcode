@@ -29,7 +29,7 @@ function ray_gdoc_shortcode_init() {
 
 				'label' => __( 'Google Drive', 'google-docs-shortcode' ),
 
-				'listItemImage' => 'https://developers.google.com/drive/images/drive_icon_mono.png',
+				'listItemImage' => '<img src="https://developers.google.com/drive/images/drive_icon_mono.png" alt="" />',
 
 				// @todo Figure out how to do conditional attributes to support 'size' and 'seamless'
 				'attrs' => array(
