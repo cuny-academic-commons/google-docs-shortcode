@@ -67,7 +67,8 @@ function ray_gdoc_shortcode_init() {
 						'options' => array(
 							'' => '--',
 							'audio' => __( 'Audio', 'google-docs-shortcode' ),
-							'image' => __( 'Image', 'google-docs-shortcode' )
+							'image' => __( 'Image', 'google-docs-shortcode' ),
+							'pdf'   => __( 'PDF', 'google-docs-shortcode' ),
 						),
 						'description' => __( "If your Google Drive item is not a Doc, Slide, Spreadsheet or Form, select the type of item you are embedding.", 'gdrive' )
 					),
