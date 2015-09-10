@@ -60,6 +60,17 @@ function ray_gdoc_shortcode_init() {
 						'description' => __( "Enter height in pixels. If left blank, this defaults to 300.", 'gdrive' )
 					),
 
+					array(
+						'label' => __( 'Type', 'google-docs-shortcode' ),
+						'attr'  => 'type',
+						'type' => 'select',
+						'options' => array(
+							'' => '--',
+							'audio'  => __( 'Audio', 'google-docs-shortcode' ),
+						),
+						'description' => __( "If your Google Drive item is not a Doc, Slide, Spreadsheet or Form, select the type of item you are embedding.", 'gdrive' )
+					),
+
 					// maybe later...
 					/*
 					array(
@@ -105,6 +116,9 @@ function ray_google_docs_shortcode( $atts ) {
 	$r = shortcode_atts( array(
 		'link'     => false,
 
+		// type
+		'type'     => false,
+
 		// dimensions
 		'width'    => ! empty( $content_width ) ? $content_width : '100%',
 		'height'   => 300,   // default height is set to 300
@@ -121,7 +135,7 @@ function ray_google_docs_shortcode( $atts ) {
 	), $atts );
 
 	// if no link or link is not from Google Docs, stop now!
-	if ( ! $r['link'] || strpos( $r['link'], '://docs.google.com' ) === false ) {
+	if ( ! $r['link'] || ( strpos( $r['link'], '://docs.google.com' ) === false && strpos( $r['link'], '://drive.google.com' ) === false ) ) {
 		return;
 	}
 
@@ -144,6 +158,10 @@ function ray_google_docs_shortcode( $atts ) {
 	// spreadsheet
 	} elseif ( strpos( $r['link'], '/spreadsheets/' ) !== false || strpos( $r['link'], '/spreadsheet/' ) !== false ) {
 		$type = 'spreadsheet';
+
+	// non-google doc
+	} elseif ( ! empty( $r['type'] ) ) {
+		$type = $r['type'];
 
 	// nada!
 	} else {
@@ -243,12 +261,18 @@ function ray_google_docs_shortcode( $atts ) {
 
 			break;
 
+		case 'audio' :
+			$r['width']  = 325;
+			$r['height'] = 55;
+			break;
 	}
 
 	// support "anyone with link" functionality
 	if ( false !== strpos( $r['link'], '/edit?usp=sharing' ) ) {
 		$r['link'] = str_replace( '/edit?usp=sharing', '/preview', $r['link'] );
 		$r['link'] = str_replace( '&widget=true', '', $r['link'] );
+	} elseif ( false !== strpos( $r['link'], '/view?usp=sharing' ) ) {
+		$r['link'] = str_replace( '/view?usp=sharing', '/preview', $r['link'] );
 	}
 
 	// set width
