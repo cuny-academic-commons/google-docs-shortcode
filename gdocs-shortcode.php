@@ -272,6 +272,7 @@ function ray_google_docs_shortcode( $atts ) {
 	if ( false !== strpos( $r['link'], '/edit?usp=sharing' ) ) {
 		$r['link'] = str_replace( '/edit?usp=sharing', '/preview', $r['link'] );
 		$r['link'] = str_replace( '&widget=true', '', $r['link'] );
+		$r['link'] = str_replace( '&embedded=true', '', $r['link'] );
 	} elseif ( false !== strpos( $r['link'], '/view?usp=sharing' ) ) {
 		$r['link'] = str_replace( '/view?usp=sharing', '/preview', $r['link'] );
 	}
