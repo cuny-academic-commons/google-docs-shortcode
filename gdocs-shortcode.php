@@ -61,7 +61,7 @@ function ray_gdoc_shortcode_init() {
 					),
 
 					array(
-						'label' => __( 'Type', 'google-docs-shortcode' ),
+						'label' => __( 'Type (non-Google Doc only)', 'google-docs-shortcode' ),
 						'attr'  => 'type',
 						'type' => 'select',
 						'options' => array(
