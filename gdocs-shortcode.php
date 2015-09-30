@@ -262,9 +262,11 @@ function ray_google_docs_shortcode( $atts ) {
 
 			break;
 
+		// http://webapps.stackexchange.com/a/84399
 		case 'audio' :
-			$r['width']  = 325;
-			$r['height'] = 55;
+			$id = str_replace( 'https://drive.google.com/file/d/', '', $r['link'] );
+			$id = str_replace( '/view?usp=sharing', '', $id );
+			$id = esc_attr( $id );
 			break;
 	}
 
@@ -283,8 +285,17 @@ function ray_google_docs_shortcode( $atts ) {
 	// set height
 	$r['height'] = ' height="' . esc_attr( $r['height'] ) . '"';
 
-	// finally, embed the google doc!
-	$output = '<iframe id="gdoc-' . md5( $r['link'] ) . '" class="gdocs_shortcode gdocs_' . esc_attr( $type ) . '" src="' .  esc_url( $r['link'] ) . '"' . $r['width'] . $r['height'] . $extra . '></iframe>';
+	// audio uses HTML5
+	if ( 'audio' === $r['type'] ) {
+		$output = "<audio controls>
+		<source src='http://docs.google.com/uc?export=open&id={$id}'>
+		<p>" . __( 'Your browser does not support HTML5 audio', 'google-docs-shortcode' ) . "</p>
+		</audio>";
+
+	// everything else uses an IFRAME
+	} else {
+		$output = '<iframe id="gdoc-' . md5( $r['link'] ) . '" class="gdocs_shortcode gdocs_' . esc_attr( $type ) . '" src="' .  esc_url( $r['link'] ) . '"' . $r['width'] . $r['height'] . $extra . '></iframe>';
+	}
 
 	return apply_filters( 'ray_google_docs_shortcode_output', $output, $type );
 }
