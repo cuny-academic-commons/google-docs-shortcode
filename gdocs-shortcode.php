@@ -61,6 +61,14 @@ function ray_gdoc_shortcode_init() {
 					),
 
 					array(
+						'label' => __( 'Add Download Link', 'google-docs-shortcode' ),
+						'attr'  => 'downloadlink',
+						'type' => 'checkbox',
+						'value' => 1,
+						'description' => __( 'If checked, this adds a download link after the embedded content.', 'google-docs-shortcode' )
+					),
+
+					array(
 						'label' => __( 'Type (non-Google Doc only)', 'google-docs-shortcode' ),
 						'attr'  => 'type',
 						'type' => 'select',
@@ -131,7 +139,10 @@ function ray_google_docs_shortcode( $atts ) {
 		// only for presentations
 		'size'     => false, // preset presentation size, either 'small', 'medium' or 'large';
 		                     // preset dimensions are as follows: small (480x389), medium (960x749), large (1440x1109)
-		                     // to set custom size, set the 'width' and 'height' params instead
+		                     // to set custom size, set the 'width' and 'height' params instead,
+
+		// links
+		'downloadlink' => false, // add a download link after the embedded content; default: false.
 
 	), $atts );
 
@@ -147,10 +158,11 @@ function ray_google_docs_shortcode( $atts ) {
 	// document
 	if ( strpos( $r['link'], '/document/' ) !== false ) {
 		$type = 'doc';
+		$base = 'document';
 
 	// presentation
 	} elseif ( strpos( $r['link'], '/presentation/' ) !== false || strpos( $r['link'], '/present/' ) !== false ) {
-		$type = 'presentation';
+		$type = $base = 'presentation';
 
 	// form
 	} elseif ( strpos( $r['link'], '/forms/' ) !== false || strpos( $r['link'], 'form?formkey' ) !== false ) {
@@ -158,7 +170,8 @@ function ray_google_docs_shortcode( $atts ) {
 
 	// spreadsheet
 	} elseif ( strpos( $r['link'], '/spreadsheets/' ) !== false || strpos( $r['link'], '/spreadsheet/' ) !== false ) {
-		$type = 'spreadsheet';
+		$type = $base = 'spreadsheet';
+		$base .= 's';
 
 	// non-google doc
 	} elseif ( ! empty( $r['type'] ) ) {
@@ -264,10 +277,38 @@ function ray_google_docs_shortcode( $atts ) {
 
 		// http://webapps.stackexchange.com/a/84399
 		case 'audio' :
+		case 'other' :
 			$id = str_replace( 'https://drive.google.com/file/d/', '', $r['link'] );
 			$id = str_replace( '/view?usp=sharing', '', $id );
 			$id = esc_attr( $id );
+
+			$link = esc_url( "http://docs.google.com/uc?export=open&id={$id}" );
 			break;
+	}
+
+	// set up link info
+	if ( true === (bool) $r['downloadlink'] ) {
+		switch ( $type ) {
+			case 'doc' :
+			case 'presentation' :
+			case 'spreadsheet' :
+				$id = str_replace( "https://docs.google.com/{$base}/d/", '', $r['link'] );
+				$id = substr( $id, 0, strrpos( $id, '/' ) );
+
+				// ugh... URL formats are different!
+				switch ( $type ) {
+					case 'doc' :
+						$link = "https://docs.google.com/feeds/download/documents/export/Export?id={$id}&exportFormat=docx";
+						break;
+					case 'presentation' :
+						$link = "https://docs.google.com/feeds/download/presentations/Export?id={$id}&exportFormat=pptx";
+						break;
+					case 'spreadsheet' :
+						$link = "https://docs.google.com/spreadsheets/export?id={$id}&exportFormat=xlsx";
+						break;
+				}
+				break;
+		}
 	}
 
 	// support "anyone with link" functionality
@@ -288,13 +329,19 @@ function ray_google_docs_shortcode( $atts ) {
 	// audio uses HTML5
 	if ( 'audio' === $r['type'] ) {
 		$output = "<audio controls>
-		<source src='http://docs.google.com/uc?export=open&id={$id}'>
+		<source src='{$link}'>
 		<p>" . __( 'Your browser does not support HTML5 audio', 'google-docs-shortcode' ) . "</p>
 		</audio>";
 
 	// everything else uses an IFRAME
 	} else {
 		$output = '<iframe id="gdoc-' . md5( $r['link'] ) . '" class="gdocs_shortcode gdocs_' . esc_attr( $type ) . '" src="' .  esc_url( $r['link'] ) . '"' . $r['width'] . $r['height'] . $extra . '></iframe>';
+	}
+
+	// add links if enabled
+	if ( true === (bool) $r['downloadlink'] && 'form' !== $type ) {
+		$link = '<p class="gdoc-download gdoc-type-' . esc_attr( $type ) . '"><span class="dashicons dashicons-download"></span><a href="' . esc_url( $link ) . '">' . __( 'Download', 'google-docs-shortcode' ). '</a></p>';
+		$output .= $link;
 	}
 
 	return apply_filters( 'ray_google_docs_shortcode_output', $output, $type );
