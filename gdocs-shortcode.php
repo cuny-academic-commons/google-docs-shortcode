@@ -63,8 +63,11 @@ function ray_gdoc_shortcode_init() {
 					array(
 						'label' => __( 'Add Download Link', 'google-docs-shortcode' ),
 						'attr'  => 'downloadlink',
-						'type' => 'checkbox',
-						'value' => 1,
+						'type' => 'select',
+						'options' => array(
+							'1' => __( 'Yes', 'google-docs-shortcode' ),
+							'' => __( 'No', 'google-docs-shortcode' ),
+						),
 						'description' => __( 'If checked, this adds a download link after the embedded content.', 'google-docs-shortcode' )
 					),
 
