@@ -64,7 +64,7 @@ Here are some other custom parameters you can use with the shortcode:
 
 * "height" - Enter in a custom height for your Google Doc if desired. Defaults to "300". Avoid percentages.
 
-* "seamless" - This parameter is only applicable to Documents. If you enter "0", this will show the Google Docs header and footer.  Default value is "1", which means that no Google Docs header or footer will be shown.
+* "seamless" - This parameter is only applicable to Documents. If you enter "0", this will show the Google Docs header and footer.  Default value is "1", which means that no Google Docs header or footer will be shown.  **Note:** This option only works if your document was [published to the web](https://support.google.com/docs/answer/37579?hl=en) and not link-shared.
 
 * "size" - This parameter is only applicable to Slides.  You can enter in "small", "medium" or "large" to use the presentation preset sizes. Dimensions for these presets are: small (480x299), medium (960x559), large (1440x839). To set a custom width and height, use the "width" and "height" parameters listed above instead.
 
