@@ -195,7 +195,7 @@ function ray_google_docs_shortcode( $atts ) {
 	// add query args depending on doc type
 	switch ( $type ) {
 		case 'doc' :
-			if ( (int) $r['seamless'] === 1 ) {
+			if ( false !== strpos( $r['link'], '/pub' ) && wp_validate_boolean( $r['seamless'] ) ) {
 				$r['link'] = add_query_arg( 'embedded', 'true', $r['link'] );
 			}
 
