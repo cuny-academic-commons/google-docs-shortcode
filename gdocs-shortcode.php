@@ -31,7 +31,6 @@ function ray_gdoc_shortcode_init() {
 
 				'listItemImage' => '<img src="https://developers.google.com/drive/images/drive_icon_mono.png" alt="" />',
 
-				// @todo Figure out how to do conditional attributes to support 'size' and 'seamless'
 				'attrs' => array(
 					array(
 						'label' => __( 'Google Doc Link', 'google-docs-shortcode' ),
@@ -83,8 +82,17 @@ function ray_gdoc_shortcode_init() {
 						'description' => __( "If your Google Drive item is not a Doc, Slide, Spreadsheet or Form, select the type of item you are embedding.", 'gdrive' )
 					),
 
-					// maybe later...
-					/*
+					array(
+						'label' => __( 'Show Doc Header/Footer', 'google-docs-shortcode' ),
+						'attr'  => 'seamless',
+						'type' => 'select',
+						'options' => array(
+							'0' => __( 'Yes', 'google-docs-shortcode' ),
+							'' => __( 'No', 'google-docs-shortcode' ),
+						),
+						'description' => __( 'This is only applicable to Google Documents.', 'google-docs-shortcode' )
+					),
+
 					array(
 						'label' => __( 'Size', 'google-docs-shortcode' ),
 						'attr'  => 'size',
@@ -96,23 +104,20 @@ function ray_gdoc_shortcode_init() {
 						),
 						'description' => __( 'This is only applicable to Google Slides. If you want to set a custom width and height, use the options above.', 'google-docs-shortcode' )
 					),
-					*/
-
-					// This doesn't quite work yet; commenting out for now
-					// @link https://github.com/fusioneng/Shortcake/pull/413
-					/*
-					array(
-						'label' => __( 'Show Doc Header/Footer', 'google-docs-shortcode' ),
-						'attr'  => 'seamless',
-						'type' => 'checkbox',
-						'value' => 0,
-						'description' => __( 'This is only applicable to Google Docs.', 'google-docs-shortcode' )
-					),
-					*/
 				),
 
 			)
 		);
+
+		/**
+		 * Enqueues JS needed for toggle functionality in Shortcake.
+		 *
+		 * @since 0.5.0
+		 */
+		function gdoc_enqueue_shortcode_ui() {
+			wp_enqueue_script( 'gdoc', plugin_dir_url( __FILE__ ) . 'shortcake.js' );
+		}
+		add_action( 'enqueue_shortcode_ui', 'gdoc_enqueue_shortcode_ui' );
 	}
 }
 add_action( 'init', 'ray_gdoc_shortcode_init' );
