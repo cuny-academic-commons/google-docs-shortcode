@@ -252,7 +252,7 @@ function ray_google_docs_shortcode( $atts ) {
 		case 'form' :
 			// new form format
 			if ( strpos( $r['link'], '/forms/' ) !== false ) {
-				$r['link'] = str_replace( 'viewform', 'viewform?embedded=true', $r['link'] );
+				$r['link'] = add_query_arg( 'embedded', true, $r['link'] );
 
 			// older form format
 			} else {
