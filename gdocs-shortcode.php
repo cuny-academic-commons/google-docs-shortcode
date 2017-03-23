@@ -146,6 +146,7 @@ function ray_google_docs_shortcode( $atts ) {
 
 		// links
 		'downloadlink' => false, // add a download link after the embedded content; default: false.
+		'hideiframe'   => false, // hide the iframe, useful if you set 'downloadlink' to true; default: false.
 
 	), $atts );
 
@@ -155,6 +156,7 @@ function ray_google_docs_shortcode( $atts ) {
 	}
 
 	$type = $extra = false;
+	$output = '';
 
 	// set the doc type by looking at the URL
 
@@ -336,8 +338,8 @@ function ray_google_docs_shortcode( $atts ) {
 		<p>" . __( 'Your browser does not support HTML5 audio', 'google-docs-shortcode' ) . "</p>
 		</audio>";
 
-	// everything else uses an IFRAME
-	} else {
+	// Use iframe if we're not hiding it.
+	} elseif ( ! wp_validate_boolean( $r['hideiframe'] ) ) {
 		$output = '<iframe id="gdoc-' . md5( $r['link'] ) . '" class="gdocs_shortcode gdocs_' . esc_attr( $type ) . '" src="' .  esc_url( $r['link'] ) . '"' . $r['width'] . $r['height'] . $extra . '></iframe>';
 	}
 
