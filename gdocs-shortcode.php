@@ -15,18 +15,42 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Initializer.
+ *
+ * @since 0.5.0 Added Shortcake support.
  */
 function ray_gdoc_shortcode_init() {
 	add_shortcode( 'gdoc', 'ray_google_docs_shortcode' );
 
-	/**
-	 * Support for Shortcake.
-	 */
+	// Add Shortcake support.
 	if ( function_exists( 'shortcode_ui_register_for_shortcode' ) ) {
 		require_once __DIR__ . '/shortcake.php';
 	}
 }
 add_action( 'init', 'ray_gdoc_shortcode_init' );
+
+/**
+ * Initialize Gutenberg support.
+ *
+ * @since 0.5.0
+ */
+function ray_google_docs_gutenberg_init() {
+	// Bail if Gutenberg isn't available.
+	if ( ! function_exists( 'register_block_type' ) ) {
+		return;
+	}
+
+	// Register JS.
+	wp_register_script( 'ray-gdoc-block', plugins_url( basename( dirname( __FILE__ ) ) ) . '/block.js', array(
+		'wp-blocks', 'wp-i18n', 'wp-element'
+	), '20181120' );
+
+	// Register block type.
+	register_block_type( 'ray/google-drive', array(
+		'editor_script'   => 'ray-gdoc-block',
+		'render_callback' => 'ray_google_docs_shortcode',
+	) );
+}
+add_action( 'init', 'ray_google_docs_gutenberg_init' );
 
 /**
  * Shortcode to embed a Google Doc.
