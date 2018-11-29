@@ -1,4 +1,4 @@
-( function( blocks, editor, i18n, element, components, _ ) {
+( function( blocks, i18n, element, _ ) {
 	var el = element.createElement,
 		Component = element.Component,
 		renderOutput;
@@ -319,7 +319,7 @@
 				type = getType( attr );
 
 				if ( 'presentation' === type ) {
-					extraField = el( components.SelectControl, {
+					extraField = el( wp.components.SelectControl, {
 						label: i18n.__( 'Size' ),
 						value: attr.size,
 						options: [
@@ -335,7 +335,7 @@
 					} );
 
 				} else if ( 'doc' === type ) {
-					extraField = el( components.CheckboxControl, {
+					extraField = el( wp.components.CheckboxControl, {
 						label: i18n.__( 'Show Doc Header/Footer' ),
 						checked: 1 === attr.seamless ? false : true,
 						onChange: function( newVal ) {
@@ -345,7 +345,7 @@
 						},
 					} );
 				} else if ( 'audio' === type || 'other' === type ) {
-					extraField = el( components.SelectControl, {
+					extraField = el( wp.components.SelectControl, {
 						label: i18n.__( 'Type (non-Google Doc only)' ),
 						value: attr.type,
 						options: [
@@ -362,7 +362,7 @@
 				}
 
 				// Sidebar controls.
-				sidebarControls = el( editor.InspectorControls, { key: 'gdrive-controls-' + id },
+				sidebarControls = el( wp.editor.InspectorControls, { key: 'gdrive-controls-' + id },
 					// Dimensions.
 					el( 'div', {
 						className: 'block-library-image__dimensions',
@@ -373,7 +373,7 @@
 						el( 'div', {
 							className: 'block-library-image__dimensions__row',
 						},
-							el( components.TextControl, {
+							el( wp.components.TextControl, {
 								className: 'block-library-image__dimensions__width',
 								label: i18n.__( 'Width' ),
 								value: attr.width,
@@ -383,7 +383,7 @@
 									});
 								},
 					                } ),
-							el( components.TextControl, {
+							el( wp.components.TextControl, {
 								className: 'block-library-image__dimensions__height',
 								label: i18n.__( 'Height' ),
 								value: attr.height ,
@@ -396,7 +396,7 @@
 						)
 					),
 					extraField,
-					el( components.CheckboxControl, {
+					el( wp.components.CheckboxControl, {
 						label: i18n.__( 'Add Download Link?' ),
 						checked: 1 === attr.downloadlink ? true : false,
 						onChange: function( newVal ) {
@@ -408,7 +408,7 @@
 				);
 
 				// Block controls.
-				blockControls = el( editor.BlockControls, { key: 'gdrive-block-controls-' + id,
+				blockControls = el( wp.editor.BlockControls, { key: 'gdrive-block-controls-' + id,
 					controls: [{
 						icon: 'trash',
 						title: i18n.__( 'Reset' ),
@@ -523,9 +523,7 @@
 
 } )(
 	window.wp.blocks,
-	window.wp.editor,
 	window.wp.i18n,
 	window.wp.element,
-	window.wp.components,
 	window._,
 );

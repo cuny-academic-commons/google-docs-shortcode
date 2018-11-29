@@ -42,7 +42,7 @@ function ray_google_docs_gutenberg_init() {
 	// Register JS.
 	wp_register_script( 'ray-gdoc-block', plugins_url( basename( dirname( __FILE__ ) ) ) . '/block.js', array(
 		'wp-blocks', 'wp-i18n', 'wp-element'
-	), '20181120' );
+	), '20181129' );
 
 	// Register block type.
 	register_block_type( 'ray/google-drive', array(
