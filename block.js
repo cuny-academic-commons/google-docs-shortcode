@@ -215,6 +215,11 @@
 							break;
 					}
 					break;
+
+				case 'audio' :
+				case 'other' :
+					dl = dl.replace( 'open', 'download' );
+					break;
 			}
 		}
 

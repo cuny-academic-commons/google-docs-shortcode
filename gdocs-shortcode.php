@@ -248,6 +248,11 @@ function ray_google_docs_shortcode( $atts ) {
 						break;
 				}
 				break;
+
+			case 'audio' :
+			case 'other' :
+				$link = str_replace( 'open', 'download', $link );
+				break;
 		}
 	}
 
