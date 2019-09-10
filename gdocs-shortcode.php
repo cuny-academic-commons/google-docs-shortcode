@@ -279,7 +279,7 @@ function ray_google_docs_shortcode( $atts ) {
 	if ( 'audio' === $r['type'] ) {
 		$output = "<audio controls>
 		<source src='{$r["link"]}'>
-		<p>" . __( 'Your browser does not support HTML5 audio', 'google-docs-shortcode' ) . "</p>
+		" . __( 'Your browser does not support HTML5 audio', 'google-docs-shortcode' ) . "
 		</audio>";
 
 	// Use iframe if we're not hiding it.
