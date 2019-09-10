@@ -189,7 +189,7 @@
 				id = link.replace( 'https://drive.google.com/file/d/', '' );
 				id = id.replace( '/view?usp=sharing', '' );
 
-				dl = "http://docs.google.com/uc?export=open&id=" + id;
+				link = dl = "https://docs.google.com/uc?export=open&id=" + id;
 				break;
 		}
 
@@ -238,7 +238,7 @@
 						controls: '',
 					},
 						el( 'source', {
-							src: dl
+							src: link
 						} ),
 						el( 'p', {}, i18n.__( 'Your browser does not support HTML5 audio' ) )
 				) );

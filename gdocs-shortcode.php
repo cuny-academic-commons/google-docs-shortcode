@@ -222,7 +222,7 @@ function ray_google_docs_shortcode( $atts ) {
 			$id = str_replace( '/view?usp=sharing', '', $id );
 			$id = esc_attr( $id );
 
-			$link = esc_url( "http://docs.google.com/uc?export=open&id={$id}" );
+			$r['link'] = $link = esc_url( "https://docs.google.com/uc?export=open&id={$id}" );
 			break;
 	}
 
@@ -269,7 +269,7 @@ function ray_google_docs_shortcode( $atts ) {
 	// audio uses HTML5
 	if ( 'audio' === $r['type'] ) {
 		$output = "<audio controls>
-		<source src='{$link}'>
+		<source src='{$r["link"]}'>
 		<p>" . __( 'Your browser does not support HTML5 audio', 'google-docs-shortcode' ) . "</p>
 		</audio>";
 
