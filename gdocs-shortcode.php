@@ -117,6 +117,10 @@ function ray_google_docs_shortcode( $atts ) {
 	} elseif ( ! empty( $r['type'] ) ) {
 		$type = $r['type'];
 
+	// other
+	} elseif ( false !== strpos( $r['link'], '/file/' ) ) {
+		$type = 'other';
+
 	// nada!
 	} else {
 		return;
