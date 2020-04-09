@@ -21,15 +21,23 @@
 		}
 	}
 
-	getType = function( attr ) {
-		var link = attr.link,
-			type = '';
-
+	validateLink = function( link ) {
 		if ( ! link ) {
 			return false;
 		}
 
 		if ( -1 === link.indexOf( '://docs.google.com' ) && -1 === link.indexOf( '://drive.google.com' ) ) {
+			return false;
+		}
+
+		return link;
+	}
+
+	getType = function( attr ) {
+		var link = validateLink( attr.link ),
+			type = '';
+
+		if ( ! link ) {
 			return false;
 		}
 
@@ -51,7 +59,7 @@
 	}
 
 	renderOutput = function( attr ) {
-		var link = attr.link,
+		var link = validateLink( attr.link ),
 			invalid = false,
 			width = '100%',
 			height = '300',
@@ -62,12 +70,7 @@
 			output = [];
 
 		if ( ! link ) {
-			link = '';
-			invalid = true;
-		}
-
-		if ( -1 === link.indexOf( '://docs.google.com' ) && -1 === link.indexOf( '://drive.google.com' ) ) {
-			invalid = true;
+			return '';
 		}
 
 		if ( attr.hasOwnProperty( 'width' ) ) {
