@@ -389,17 +389,17 @@
 								value: attr.width,
 								onChange: function( newVal ) {
 									props.setAttributes({
-										width: newVal * 1
+										width: newVal.replace(/\D+/,'') * 1
 									});
 								},
 					                } ),
 							el( wp.components.TextControl, {
 								className: 'block-library-image__dimensions__height components-base-control block-editor-image-size-control__height',
 								label: i18n.__( 'Height' ),
-								value: attr.height ,
+								value: attr.height,
 								onChange: function( newVal ) {
 									props.setAttributes({
-										height: newVal * 1
+										height: newVal.replace(/\D+/,'') * 1
 									});
 								},
 					                } ),
