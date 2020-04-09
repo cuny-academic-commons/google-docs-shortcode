@@ -57,6 +57,34 @@ function ray_google_docs_gutenberg_init() {
 add_action( 'init', 'ray_google_docs_gutenberg_init' );
 
 /**
+ * Enqueues inline JS for Gutenberg.
+ *
+ * Requires at least WordPress 5.2.0.
+ *
+ * @since 0.5.0
+ */
+function ray_google_docs_enqueue_block_assets() {
+	// If not WP 5.2 or if our Google Drive block is not registered, bail.
+	if ( ! function_exists( 'wp_is_xml_request' ) || ! WP_Block_Type_Registry::get_instance()->is_registered( 'ray/google-drive' ) ) {
+		return;
+	}
+
+	/**
+	 * Filter to change the default help URL for the Google Drive block.
+	 *
+	 * @since 0.5.0
+	 *
+	 * @param string $url Help URL.
+	 */
+	$help_url = apply_filters( 'ray_gdoc_help_url', 'https://github.com/cuny-academic-commons/google-docs-shortcode/wiki/Sharing-a-Google-Drive-file-and-getting-the-link' );
+
+	wp_localize_script( 'ray-gdoc-block', 'rayGDriveProps', array(
+		'helpUrl' => esc_url_raw( $help_url )
+	) );
+}
+add_action( 'enqueue_block_editor_assets', 'ray_google_docs_enqueue_block_assets', 11 );
+
+/**
  * Shortcode to embed a Google Doc.
  *
  * eg. [gdoc link="https://docs.google.com/document/pub?id=XXX"]

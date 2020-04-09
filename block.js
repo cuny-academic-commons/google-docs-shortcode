@@ -527,7 +527,13 @@
 						placeholder: i18n.__( 'Type or Paste URL. Hit Enter to submit.' ),
 						className: 'components-placeholder__input',
 						onKeyDown: this.onKeyDown
-					})
+					}),
+					el( 'div', { className: 'components-placeholder__learn-more' },
+						el( wp.components.ExternalLink, {
+							href: rayGDriveProps.helpUrl,
+							children: i18n.__( 'Find out how to find your Google Drive link' )
+						})
+					)
 				)
 			);
 		}
