@@ -456,9 +456,7 @@
 						value: props.attributes.link,
 						onChange: function( url ) {
 							console.log( url );
-							if ( -1 !== url.indexOf( 'https://' ) ) {
-								props.setAttributes( { link: url } );
-							}
+							props.setAttributes( { link: url } );
 						}
 					} )
 				)
@@ -473,35 +471,30 @@
 	// Inspired by wp.editor.URLInput and https://gist.github.com/krambertech/76afec49d7508e89e028fce14894724c
 	class GDriveURLInput extends Component {
 		constructor(props) {
-			super( ...arguments );
+			super( props );
 
 			this.onChange = this.onChange.bind( this );
 			this.onKeyDown = this.onKeyDown.bind( this );
+
+			this.timer = null;
 
 			this.state = {
 				value: props.value
 			};
 		}
 
-		componentWillMount() {
-			this.timer = null;
-		}
-
-		handleChange(value) {
-			clearTimeout(this.timer);
-
-			this.setState({ value });
-
-			this.timer = setTimeout(this.triggerChange, 1000);
-		}
-
 		onChange( event ) {
 			const inputValue = event.target.value;
 
 			clearTimeout(this.timer);
+
 			this.setState({ value: inputValue });
 
-			this.timer = setTimeout(this.triggerChange, 1000);
+			this.timer = setTimeout(function() {
+				if ( validateLink( inputValue ) ) {
+					this.triggerChange();
+				}
+			}.bind(this), 1000);
 		}
 
 		onKeyDown(e) {
