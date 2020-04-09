@@ -39,14 +39,16 @@ function ray_google_docs_gutenberg_init() {
 		return;
 	}
 
-	// Register JS.
+	// Register assets.
 	wp_register_script( 'ray-gdoc-block', plugins_url( basename( dirname( __FILE__ ) ) ) . '/block.js', array(
 		'wp-blocks', 'wp-i18n', 'wp-element'
 	), '20181129' );
+	wp_register_style( 'ray-gdoc-block', plugins_url( basename( dirname( __FILE__ ) ) ) . '/block.css', array(), '' );
 
 	// Register block type.
 	register_block_type( 'ray/google-drive', array(
 		'editor_script'   => 'ray-gdoc-block',
+		'editor_style'    => 'ray-gdoc-block',
 		'render_callback' => 'ray_google_docs_shortcode',
 	) );
 }

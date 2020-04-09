@@ -327,6 +327,7 @@
 
 				if ( 'presentation' === type ) {
 					extraField = el( wp.components.SelectControl, {
+						className: 'components-panel__body is-opened gdrive-sidebar-item',
 						label: i18n.__( 'Size' ),
 						value: attr.size,
 						options: [
@@ -343,6 +344,7 @@
 
 				} else if ( 'doc' === type ) {
 					extraField = el( wp.components.CheckboxControl, {
+						className: 'components-panel__body is-opened gdrive-sidebar-item',
 						label: i18n.__( 'Show Doc Header/Footer' ),
 						checked: 1 === attr.seamless ? false : true,
 						onChange: function( newVal ) {
@@ -353,6 +355,7 @@
 					} );
 				} else if ( 'audio' === type || 'other' === type ) {
 					extraField = el( wp.components.SelectControl, {
+						className: 'components-panel__body is-opened gdrive-sidebar-item',
 						label: i18n.__( 'Type (non-Google Doc only)' ),
 						value: attr.type,
 						options: [
@@ -372,16 +375,16 @@
 				sidebarControls = el( wp.blockEditor.InspectorControls, { key: 'gdrive-controls-' + id },
 					// Dimensions.
 					el( 'div', {
-						className: 'block-library-image__dimensions',
+						className: 'gdrive-sidebar-dimensions block-library-image__dimensions components-panel__body is-opened block-editor-image-size-control',
 					},
 						el( 'p', {
-							className: 'block-library-image__dimensions__row'
+							className: 'block-library-image__dimensions__row gdrive-sidebar-dimensions-label'
 						}, i18n.__( 'Dimensions' ) ),
 						el( 'div', {
-							className: 'block-library-image__dimensions__row',
+							className: 'block-library-image__dimensions__row block-editor-image-size-control__row',
 						},
 							el( wp.components.TextControl, {
-								className: 'block-library-image__dimensions__width',
+								className: 'block-library-image__dimensions__width components-base-control block-editor-image-size-control__width',
 								label: i18n.__( 'Width' ),
 								value: attr.width,
 								onChange: function( newVal ) {
@@ -391,7 +394,7 @@
 								},
 					                } ),
 							el( wp.components.TextControl, {
-								className: 'block-library-image__dimensions__height',
+								className: 'block-library-image__dimensions__height components-base-control block-editor-image-size-control__height',
 								label: i18n.__( 'Height' ),
 								value: attr.height ,
 								onChange: function( newVal ) {
@@ -405,6 +408,7 @@
 					extraField,
 					el( wp.components.CheckboxControl, {
 						label: i18n.__( 'Add Download Link?' ),
+						className: 'components-panel__body is-opened gdrive-sidebar-item',
 						checked: 1 === attr.downloadlink ? true : false,
 						onChange: function( newVal ) {
 							props.setAttributes({
@@ -513,7 +517,7 @@
 
 		render() {
 			return (
-				el( 'div', { className: 'editor-url-input' },
+				el( 'div', { className: 'components-placeholder__fieldset' },
 					el( 'input', {
 						type: 'text',
 						ariaLabel: i18n.__( 'URL' ),
@@ -521,6 +525,7 @@
 						value: this.state.value,
 						onChange: this.onChange,
 						placeholder: i18n.__( 'Type or Paste URL. Hit Enter to submit.' ),
+						className: 'components-placeholder__input',
 						onKeyDown: this.onKeyDown
 					})
 				)
