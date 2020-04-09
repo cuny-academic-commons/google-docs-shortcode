@@ -519,8 +519,8 @@
 			return (
 				el( 'div', { className: 'components-placeholder__fieldset' },
 					el( 'input', {
-						type: 'text',
-						ariaLabel: i18n.__( 'URL' ),
+						type: 'url',
+						'aria-label': i18n.__( 'URL' ),
 						required: '',
 						value: this.state.value,
 						onChange: this.onChange,
