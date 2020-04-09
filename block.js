@@ -252,6 +252,7 @@
 			// Use iframe if we're not hiding it.
 			} else if ( ! attr.hasOwnProperty( 'hideiframe' ) || false === isTrue( attr.hideiframe ) ) {
 				output.push( el( 'iframe', {
+					key: 'gdoc-' + id,
 					className: 'gdocs_shortcode gdocs_' + type,
 					src: link,
 					width: width,
@@ -267,6 +268,7 @@
 			// add download link if enabled
 			if ( attr.hasOwnProperty( 'downloadlink' ) && isTrue( attr.downloadlink ) && 'form' !== type ) {
 				output.push( el( 'p', {
+						key: 'gdoc-download-' + id,
 						className: 'gdoc-download gdoc-type-' + type,
 					},
 						el( 'span', {
@@ -367,7 +369,7 @@
 				}
 
 				// Sidebar controls.
-				sidebarControls = el( wp.editor.InspectorControls, { key: 'gdrive-controls-' + id },
+				sidebarControls = el( wp.blockEditor.InspectorControls, { key: 'gdrive-controls-' + id },
 					// Dimensions.
 					el( 'div', {
 						className: 'block-library-image__dimensions',
@@ -413,7 +415,7 @@
 				);
 
 				// Block controls.
-				blockControls = el( wp.editor.BlockControls, { key: 'gdrive-block-controls-' + id,
+				blockControls = el( wp.blockEditor.BlockControls, { key: 'gdrive-block-controls-' + id,
 					controls: [{
 						icon: 'trash',
 						title: i18n.__( 'Reset' ),
