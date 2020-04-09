@@ -31,11 +31,13 @@ add_action( 'init', 'ray_gdoc_shortcode_init' );
 /**
  * Initialize Gutenberg support.
  *
+ * Requires at least WordPress 5.2.0 due to some JS.
+ *
  * @since 0.5.0
  */
 function ray_google_docs_gutenberg_init() {
-	// Bail if Gutenberg isn't available.
-	if ( ! function_exists( 'register_block_type' ) ) {
+	// Bail if not at least WP 5.2.
+	if ( ! function_exists( 'wp_is_xml_request' ) ) {
 		return;
 	}
 
