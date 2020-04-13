@@ -49,10 +49,10 @@
 			type = 'form';
 		} else if ( -1 !== link.indexOf( '/spreadsheets/' ) || -1 !== link.indexOf( '/spreadsheet/' ) ) {
 			type = 'spreadsheet';
-		} else if ( attr.hasOwnProperty( 'type' ) ) {
+		} else if ( attr.hasOwnProperty( 'type' ) && attr.type ) {
 			type = attr.type;
 		} else {
-			type - 'other';
+			type = 'other';
 		}
 
 		return type;
@@ -243,14 +243,14 @@
 			// audio uses HTML5
 			if ( 'audio' === type ) {
 				output.push( el( 'audio', {
-						controls: '',
+						key: 'gdoc-' + id,
+						controls: true,
 					},
 						el( 'source', {
 							src: link
 						} ),
 						el( 'p', {}, i18n.__( 'Your browser does not support HTML5 audio' ) )
 				) );
-				//"<audio controls><source src='" + link + "'><p>Your browser does not support HTML5 audio</p></audio>";
 
 			// Use iframe if we're not hiding it.
 			} else if ( ! attr.hasOwnProperty( 'hideiframe' ) || false === isTrue( attr.hideiframe ) ) {
@@ -311,6 +311,9 @@
 			},
 			link: {
 				type: 'string'
+			},
+			type: {
+				type: 'string'
 			}
 		},
 		edit: function( props ) {
@@ -362,8 +365,8 @@
 						label: i18n.__( 'Type (non-Google Doc only)' ),
 						value: attr.type,
 						options: [
-							{ value: 'audio',  label: i18n.__( 'Audio' ) },
 							{ value: 'other', label: i18n.__( 'Other (Image, PDF, Microsoft Office, etc.)' ) },
+							{ value: 'audio', label: i18n.__( 'Audio' ) },
 						],
 						onChange: function( newVal ) {
 							props.setAttributes({
@@ -429,7 +432,8 @@
 						onClick: function( event ) {
 							// Wipe out our link variable so we start from scratch again.
 							props.setAttributes({
-								link: ''
+								link: '',
+								type: ''
 							});
 						},
 					}]
