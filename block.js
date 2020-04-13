@@ -30,6 +30,10 @@
 			return false;
 		}
 
+		if ( link.length < 60 ) {
+			return false;
+		}
+
 		return link;
 	}
 
