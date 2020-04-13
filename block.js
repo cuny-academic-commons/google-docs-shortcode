@@ -408,14 +408,14 @@
 										height: newVal.replace(/\D+/,'') * 1
 									});
 								},
-					                } ),
+							} ),
 						)
 					),
 					extraField,
 					el( wp.components.CheckboxControl, {
 						label: i18n.__( 'Add Download Link?' ),
 						className: 'components-panel__body is-opened gdrive-sidebar-item',
-						checked: 1 === attr.downloadlink ? true : false,
+						checked: isTrue( attr.downloadlink ) ? true : false,
 						onChange: function( newVal ) {
 							props.setAttributes({
 								downloadlink: true === newVal ? 1 : 0
