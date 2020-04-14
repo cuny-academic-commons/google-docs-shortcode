@@ -441,6 +441,7 @@
 								width: '',
 								height: '',
 								size: '',
+								seamless: '',
 								downloadlink: ''
 							});
 						},
@@ -473,9 +474,13 @@
 								height: rayGDriveProps.defaultHeight
 							};
 
+							// Set some defaults for specific types.
 							if ( 'presentation' === getType( settings ) ) {
 								settings.width = '';
 								settings.height = '';
+							}
+							if ( 'doc' === getType( settings ) ) {
+								settings.seamless = 1;
 							}
 
 							props.setAttributes( settings );
