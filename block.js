@@ -522,7 +522,7 @@
 				if ( validateLink( inputValue ) ) {
 					this.triggerChange();
 				}
-			}.bind(this), 1000);
+			}.bind(this), 2000);
 		}
 
 		onKeyDown(e) {
