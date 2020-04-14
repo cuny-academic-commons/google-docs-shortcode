@@ -467,12 +467,18 @@
 						//className: props.className,
 						value: props.attributes.link,
 						onChange: function( url ) {
-							console.log( url );
-							props.setAttributes( {
+							var settings = {
 								link: url,
 								width: rayGDriveProps.defaultWidth,
 								height: rayGDriveProps.defaultHeight
-							} );
+							};
+
+							if ( 'presentation' === getType( settings ) ) {
+								settings.width = '';
+								settings.height = '';
+							}
+
+							props.setAttributes( settings );
 						}
 					} )
 				)
