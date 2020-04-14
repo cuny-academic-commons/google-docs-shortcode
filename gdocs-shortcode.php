@@ -329,3 +329,16 @@ function ray_google_docs_shortcode( $atts ) {
 
 	return apply_filters( 'ray_google_docs_shortcode_output', $output, $type );
 }
+
+/**
+ * Adds an "Instructions" link to the plugin action row in the admin area.
+ *
+ * @since 0.5.0
+ */
+add_filter( 'plugin_action_links_google-docs-shortcode/gdocs-shortcode.php', function( $actions ) {
+	$actions['instructions'] = sprintf( '<a href="%1$s" target="_blank">%2$s</a>',
+		'https://github.com/cuny-academic-commons/google-docs-shortcode/wiki',
+		esc_html__( 'Instructions', 'google-docs-shortcode' )
+	);
+	return $actions;
+} );
