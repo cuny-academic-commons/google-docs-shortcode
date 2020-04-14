@@ -79,7 +79,9 @@ function ray_google_docs_enqueue_block_assets() {
 	$help_url = apply_filters( 'ray_gdoc_help_url', 'https://github.com/cuny-academic-commons/google-docs-shortcode/wiki/Sharing-a-Google-Drive-file-and-getting-the-link' );
 
 	wp_localize_script( 'ray-gdoc-block', 'rayGDriveProps', array(
-		'helpUrl' => esc_url_raw( $help_url )
+		'helpUrl'       => esc_url_raw( $help_url ),
+		'defaultWidth'  => ! empty( $GLOBALS['content_width'] ) ? $GLOBALS['content_width'] : 640,
+		'defaultHeight' => 300
 	) );
 }
 add_action( 'enqueue_block_editor_assets', 'ray_google_docs_enqueue_block_assets', 11 );

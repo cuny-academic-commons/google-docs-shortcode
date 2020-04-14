@@ -468,7 +468,11 @@
 						value: props.attributes.link,
 						onChange: function( url ) {
 							console.log( url );
-							props.setAttributes( { link: url } );
+							props.setAttributes( {
+								link: url,
+								width: rayGDriveProps.defaultWidth,
+								height: rayGDriveProps.defaultHeight
+							} );
 						}
 					} )
 				)
