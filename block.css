@@ -7,6 +7,10 @@ div[data-type="ray/google-drive"] {
 	margin-top: 1em;
 }
 
+div[data-type="ray/google-drive"] p {
+	margin-bottom: 0;
+}
+
 /* WP 5.4 styles */
 .block-editor-editor-skeleton__html-container .wp-block-ray-google-drive input[type="url"] {
 	width: 100%;
