@@ -482,6 +482,9 @@
 							if ( 'doc' === getType( settings ) ) {
 								settings.seamless = 1;
 							}
+							if ( 'form' === getType( settings ) ) {
+								settings.height = 500;
+							}
 
 							props.setAttributes( settings );
 						}
