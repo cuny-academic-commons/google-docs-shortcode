@@ -77,11 +77,11 @@
 			return '';
 		}
 
-		if ( attr.hasOwnProperty( 'width' ) ) {
+		if ( attr.hasOwnProperty( 'width' ) && attr.width ) {
 			width = attr.width;
 		}
 
-		if ( attr.hasOwnProperty( 'height' ) ) {
+		if ( attr.hasOwnProperty( 'height' ) && attr.height ) {
 			height = attr.height;
 		}
 
@@ -118,7 +118,7 @@
 				// alter the link so we're in embed mode
 				link = link.replace( 'pub?', 'embed?' );
 
-				if ( attr.hasOwnProperty( 'size' ) ) {
+				if ( attr.hasOwnProperty( 'size' ) && attr.size ) {
 					size = attr.size;
 				}
 
@@ -298,25 +298,25 @@
 		icon:{foreground:"#555D66",src:Object(el)("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24"},Object(el)("g",null,Object(el)("path",{d:"M4.433 22.396l4-6.929H24l-4 6.929H4.433zm3.566-6.929l-3.998 6.929L0 15.467 7.785 1.98l3.999 6.931-3.785 6.556zm15.784-.375h-7.999L7.999 1.605h8.002l7.785 13.486h-.003z"})))},
 		category: 'embed',
 		attributes: {
+			link: {
+				type: 'string'
+			},
 			height: {
 				type: 'number'
 			},
 			width: {
 				type: 'number'
 			},
+			downloadlink: {
+				type: 'number'
+			},
+			type: {
+				type: 'string'
+			},
 			seamless: {
 				type: 'number'
 			},
 			size: {
-				type: 'string'
-			},
-			downloadlink: {
-				type: 'number'
-			},
-			link: {
-				type: 'string'
-			},
-			type: {
 				type: 'string'
 			}
 		},
@@ -434,10 +434,14 @@
 						icon: 'trash',
 						title: i18n.__( 'Reset' ),
 						onClick: function( event ) {
-							// Wipe out our link variable so we start from scratch again.
+							// Reset variables to start fresh.
 							props.setAttributes({
 								link: '',
-								type: ''
+								type: '',
+								width: '',
+								height: '',
+								size: '',
+								downloadlink: ''
 							});
 						},
 					}]
