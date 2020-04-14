@@ -488,11 +488,17 @@
 			this.onChange = this.onChange.bind( this );
 			this.onKeyDown = this.onKeyDown.bind( this );
 
-			this.timer = null;
-
 			this.state = {
 				value: props.value
 			};
+		}
+
+		componentDidMount() {
+			this.timer = null;
+		}
+
+		componentWillUnmount() {
+			clearTimeout(this.timer);
 		}
 
 		onChange( event ) {
