@@ -325,6 +325,7 @@
 				sidebarControls,
 				blockControls,
 				extraField = '',
+				downloadField = '',
 				id, type;
 
 			// Link added.
@@ -381,6 +382,19 @@
 
 				}
 
+				if ( 'form' !== type ) {
+					downloadField = el( wp.components.CheckboxControl, {
+						label: i18n.__( 'Add Download Link?' ),
+						className: 'components-panel__body is-opened gdrive-sidebar-item',
+						checked: isTrue( attr.downloadlink ) ? true : false,
+						onChange: function( newVal ) {
+							props.setAttributes({
+								downloadlink: true === newVal ? 1 : 0
+							});
+						},
+					} );
+				}
+
 				// Sidebar controls.
 				sidebarControls = el( wp.blockEditor.InspectorControls, { key: 'gdrive-controls-' + id },
 					// Dimensions.
@@ -416,16 +430,7 @@
 						)
 					),
 					extraField,
-					el( wp.components.CheckboxControl, {
-						label: i18n.__( 'Add Download Link?' ),
-						className: 'components-panel__body is-opened gdrive-sidebar-item',
-						checked: isTrue( attr.downloadlink ) ? true : false,
-						onChange: function( newVal ) {
-							props.setAttributes({
-								downloadlink: true === newVal ? 1 : 0
-							});
-						},
-					} )
+					downloadField
 				);
 
 				// Block controls.
