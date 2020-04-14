@@ -2,7 +2,7 @@
 /*
 Plugin Name: Google Docs Shortcode
 Plugin URI: https://github.com/cuny-academic-commons/google-docs-shortcode
-Description: Easily embed a Google Doc into your blog posts
+Description: Embed a Google Drive item (document, spreadsheet, presentation, form) into your blog posts with the provided "Google Drive" block or with the "gdoc" shortcode.
 Author: r-a-y
 Author URI: http://profiles.wordpress.org/r-a-y
 Version: 0.5-bleeding
