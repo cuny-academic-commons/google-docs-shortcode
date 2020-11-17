@@ -462,7 +462,7 @@
 
 			// No item selected.
 			return (
-				el( 'div', { className: props.className + ' components-placeholder' },
+				el( 'div', { className: props.className + ' is-large components-placeholder' },
 					el( 'div', {
 						className: 'components-placeholder__label',
 					}, i18n.__( 'Google Drive' ) ),
@@ -493,7 +493,13 @@
 
 							props.setAttributes( settings );
 						}
-					} )
+					} ),
+					el( 'div', { className: 'components-placeholder__learn-more components-placeholder__fieldset' },
+						el( wp.components.ExternalLink, {
+							href: rayGDriveProps.helpUrl,
+							children: i18n.__( 'Find out how to find your Google Drive link' )
+						})
+					)
 				)
 			);
 		},
@@ -564,13 +570,7 @@
 						placeholder: i18n.__( 'Type or Paste URL. Hit Enter to submit.' ),
 						className: 'components-placeholder__input',
 						onKeyDown: this.onKeyDown
-					}),
-					el( 'div', { className: 'components-placeholder__learn-more' },
-						el( wp.components.ExternalLink, {
-							href: rayGDriveProps.helpUrl,
-							children: i18n.__( 'Find out how to find your Google Drive link' )
-						})
-					)
+					})
 				)
 			);
 		}

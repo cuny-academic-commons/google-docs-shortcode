@@ -44,7 +44,7 @@ function ray_google_docs_gutenberg_init() {
 	// Register assets.
 	wp_register_script( 'ray-gdoc-block', plugins_url( basename( dirname( __FILE__ ) ) ) . '/block.js', array(
 		'wp-blocks', 'wp-i18n', 'wp-element'
-	), '20181129' );
+	), '20201116' );
 	wp_register_style( 'ray-gdoc-block', plugins_url( basename( dirname( __FILE__ ) ) ) . '/block.css', array(), '' );
 
 	// Register block type.
