@@ -327,6 +327,9 @@ function ray_google_docs_shortcode( $atts ) {
 		$output .= $link;
 	}
 
+	// Wrap output in <figure> because of Gutenberg.
+	$output = sprintf( '<figure class="wp-block-embed wp-block-embed-gdoc"><div class="wp-block-embed__wrapper">%s</div></figure>', $output );
+
 	return apply_filters( 'ray_google_docs_shortcode_output', $output, $type );
 }
 
